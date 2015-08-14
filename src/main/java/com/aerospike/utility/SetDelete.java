@@ -33,6 +33,7 @@ import com.aerospike.client.Key;
 import com.aerospike.client.Record;
 import com.aerospike.client.ResultCode;
 import com.aerospike.client.ScanCallback;
+import com.aerospike.client.policy.Priority;
 import com.aerospike.client.policy.ScanPolicy;
 import com.aerospike.client.policy.WritePolicy;
 
@@ -76,6 +77,8 @@ public class SetDelete {
 
 			ScanPolicy scanPolicy = new ScanPolicy();
 			scanPolicy.includeBinData = false;
+			scanPolicy.concurrentNodes = true;
+			scanPolicy.priority = Priority.HIGH;
 			/*
 			 * scan the entire Set using scannAll(). This will scan each node 
 			 * in the cluster and return the record Digest to the call back object
